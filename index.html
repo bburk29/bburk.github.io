@@ -1,9 +1,17 @@
-<!DOCTYPE html>
-<html><head>  <meta charset="UTF-8">
-        <title>students</title>
+<!DOCTYPE html><html>
+<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Program 5</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <!-- bootstrap on github, need to use https for these links -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <style> .btn{margin: 5px} </style>
 </head>
-<body>
-  
+	
+<body>	
      <div class="container">
             <h2>Select a Major</h2>
       
@@ -23,10 +31,9 @@
   </body>
 
 
-  <!-- Handlebars template -->
-<script type="text/x-handlebars-template" id="tableTemplate">
-
-   <table class="table table-striped">
+ <!-- Handlebars template -->
+  <script type="text/x-handlebars-template" id="tableTemplate">
+      <table class="table table-striped">
        <tr><th>Item</th><th>Meal</th><th>Category</th><th>Portion</th></tr>
            {{#each rows}}
                <tr>
@@ -36,12 +43,13 @@
    </table>
 </script>
   
-  <!-- application ajax code -->
+<!-- application ajax code -->
 <script>
 
 	function getData(major) {
 		var request = new XMLHttpRequest();
-    	request.open('GET', 'menu_items.json');     // open the request
+		var url - "cit5students.json";
+    	request.open('GET', url);     // open the request
 
     	request.onload = function() {
 
@@ -58,10 +66,10 @@
              	var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
               	
               	compiledHtml = compiledTemplateText({ rows: majors })      // apply data to template
-              	document.getElementById('menuTable').innerHTML = compiledHtml; 	
+              	document.getElementById('peopleTable').innerHTML = compiledHtml; 	
        	 	}
         	else {
-            	document.querySelector('#menuTable').innerHTML = "There was an error, or menu items not found";
+            	document.querySelector('#peopleTable').innerHTML = "There was an error, or menu items not found";
         	}
 		}
 

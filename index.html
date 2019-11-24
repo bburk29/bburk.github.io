@@ -10,22 +10,18 @@
 
     <style> .btn{margin: 5px} </style>
 </head>
-	
-<body>	
-     <div class="container">
-            <h2>Select a Major</h2>
-      
-            <div style='padding: 5px;'>    
-               <button type='button' class="btn btn-primary" onClick="getData('CIT)">CIT Majors</button> &nbsp; 
-               <button type='button' class="btn btn-primary" onClick="getData('BUS')">Business Majors</button> 
-            </div>
-     </div>   <!-- end class='container'   -->
-  </body>
 
+<body>
+  <div class="container">
+      <h2>Click a button to get results</h2>
+      <div style='padding: 5px;'> 
+         <button type='button' class="btn btn-primary" onClick="getData('CIT')">CIT Majors</button> &nbsp; 
+               <button type='button' class="btn btn-primary" onClick="getData('BUS')">Business Majors</button> 
+      </div>
 
  <!-- Handlebars template -->
   <script type="text/x-handlebars-template" id="tableTemplate">
-      <table class="table table-striped">
+      <table class="tableTemplate">
        <tr><th>Item</th><th>Meal</th><th>Category</th><th>Portion</th></tr>
            {{#each rows}}
                <tr>
@@ -34,13 +30,13 @@
            {{/each}}
    </table>
 </script>
-  
-<!-- application ajax code -->
+
+  <!-- application ajax code -->
 <script>
 
 	function getData(major) {
 		var request = new XMLHttpRequest();
-		var url - "cit5students.json";
+		var url = "cit5students.json";
     	request.open('GET', url);     // open the request
 
     	request.onload = function() {
@@ -58,10 +54,10 @@
              	var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
               	
               	compiledHtml = compiledTemplateText({ rows: majors })      // apply data to template
-              	document.getElementById('peopleTable').innerHTML = compiledHtml; 	
+              	document.getElementById('tableTemplate').innerHTML = compiledHtml; 	
        	 	}
         	else {
-            	document.querySelector('#peopleTable').innerHTML = "There was an error, or menu items not found";
+            	document.querySelector('#tableTemplate').innerHTML = "There was an error, or menu items not found";
         	}
 		}
 
